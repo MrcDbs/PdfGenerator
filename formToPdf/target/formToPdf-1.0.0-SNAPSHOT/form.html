@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Form</h2>
+<form action="visualizza" method="post">
+    Nome: <input type="text" name="nome" size="20" required>
+    <br>
+    Cognome: <input type="text" name="cognome" size="20" required>
+    <br>
+    Email: <input type="email" name="email" pattern="[a-z0-9._]+@[a-z.-]+\.[a-z]{2,3}$" required>
+    <!-- pattern="[a-z0-9._]+@[a-z.-]+\.com" -->
+    <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
+  <!--  pattern= "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" -->
+    <br>
+    <input type="submit" value="Visualizza" />
+</form>
+</body>
+</html>
