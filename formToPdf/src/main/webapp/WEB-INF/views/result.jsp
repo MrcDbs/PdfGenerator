@@ -2,25 +2,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-		<table>
+		<table class="table">
 		<jsp:useBean id="persona" scope="request" class="it.bean.Persona"/>
-		<th>
-			<td>Nome </td>
-			<td>Cognome</td>
-			<td>Email</td>
-		</th>
+		<tr>
+			<th>Nome </th>
+			<th>Cognome</th>
+			<th>Email</th>
+		</tr>
 		
 		<tr>
+		
 			<td><jsp:getProperty property="nome" name="persona"/></td>
 			<td><jsp:getProperty property="cognome" name="persona"/></td>
 			<td><jsp:getProperty property="email" name="persona"/></td>
 		</tr>
 		
 	</table>
-	<input type="submit" value="Converti"/>
+	<form method="get" action="visualizza">
+	<input type="hidden" name="pdf" value="visualizza"/>
+<input value="Visualizza PDF" type="submit">
+</form>
+	<form method="get" action="visualizza">
+	<input type="hidden" name="pdf" value="genera"/>
+<input value="Scarica PDF" type="submit">
+</form>
 </body>
 </html>

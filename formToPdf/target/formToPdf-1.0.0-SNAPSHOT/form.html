@@ -11,7 +11,9 @@
     <br>
     Cognome: <input type="text" name="cognome" size="20" required>
     <br>
-    Email: <input type="email" name="email" pattern="[a-z0-9._]+@[a-z.-]+\.[a-z]{2,3}$" required>
+    Email: <input type="email" name="email" pattern="[a-z0-9._]+@[a-z.-]+\.(com|org|it|net)$" required><label>Ex. "example@domain.com"</label>
+   <!--  pattern="[a-z0-9._]+@[a-z.-]+\.(com|org|it|net)$" PATTERN SPECIFIED SUBDOMAIN-->
+     <!-- pattern="[a-z0-9._]+@[a-z.-]+\.[a-z]{2,3}$"  PATTERN CON DOMINIO DI 2 O 3 -->
     <!-- pattern="[a-z0-9._]+@[a-z.-]+\.com" -->
     <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
   <!--  pattern= "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" -->
