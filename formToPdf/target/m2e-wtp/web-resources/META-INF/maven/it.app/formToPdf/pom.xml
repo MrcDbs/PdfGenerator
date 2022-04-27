@@ -11,89 +11,83 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
+    
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
             <version>3.0.0</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>2.0.0</version>
         </dependency>
+        
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>2.0.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core -->
-	<dependency>
-	    <groupId>com.sun.xml.bind</groupId>
-	    <artifactId>jaxb-core</artifactId>
-	    <version>4.0.0-M4</version>
-	</dependency>
+    
+	 	<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-core</artifactId>
+		    <version>4.0.0-M4</version>
+		</dependency>
+		
+	 	<dependency>
+		    <groupId>javax.xml.ws</groupId>
+		    <artifactId>jaxws-api</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
+ 
+		 <dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.0-b170201.1204</version>
+		</dependency>  
+		
 	
-	
-        
-        
-       <!-- https://mvnrepository.com/artifact/javax.xml.ws/jaxws-api -->
-	<dependency>
-	    <groupId>javax.xml.ws</groupId>
-	    <artifactId>jaxws-api</artifactId>
-	    <version>2.3.1</version>
-	</dependency>
-    <!--    <dependency>
-	  <groupId>javax.xml.bind</groupId>
-	  <artifactId>jaxb-api</artifactId>
-	  <version>2.3.1</version>
-	</dependency> -->
-	
-	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
- <dependency>
-    <groupId>javax.xml.bind</groupId>
-    <artifactId>jaxb-api</artifactId>
-    <version>2.3.0-b170201.1204</version>
-</dependency> 
+	 	<dependency>
+		    <groupId>javax.activation</groupId>
+		    <artifactId>activation</artifactId>
+		    <version>1.1</version>
+		</dependency> 
+		
+		
+		<dependency>
+		    <groupId>org.glassfish.jaxb</groupId>
+		    <artifactId>jaxb-runtime</artifactId>
+		    <version>2.3.1</version>
+		</dependency> 
+		
+	<!-- 	<dependency>
+		    <groupId>javax.xml</groupId>
+		    <artifactId>jaxp-api</artifactId>
+		    <version>1.4.2</version>
+		</dependency> -->
 
-<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
-<dependency>
-    <groupId>javax.activation</groupId>
-    <artifactId>activation</artifactId>
-    <version>1.1</version>
-</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
-<dependency>
-    <groupId>org.glassfish.jaxb</groupId>
-    <artifactId>jaxb-runtime</artifactId>
-    <version>2.3.1</version>
-</dependency>
-
-<dependency>
-    <groupId>javax.xml</groupId>
-    <artifactId>jaxp-api</artifactId>
-    <version>1.4.2</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/fop -->
-<dependency>
-    <groupId>org.apache.xmlgraphics</groupId>
-    <artifactId>fop</artifactId>
-    <version>2.7</version>
-    <exclusions>
-    <exclusion>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-    </exclusion>
-  </exclusions>
-</dependency>
+		<dependency>
+		    <groupId>org.apache.xmlgraphics</groupId>
+		    <artifactId>fop</artifactId>
+		    <version>2.7</version>
+		 <exclusions>
+		    <exclusion>
+		      <groupId>xml-apis</groupId>
+		      <artifactId>xml-apis</artifactId>
+		    </exclusion>
+		  </exclusions> 
+		</dependency>
 
     </dependencies>
     <build>

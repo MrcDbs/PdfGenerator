@@ -1,13 +1,20 @@
 package it.app;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
-import java.nio.file.Files;
 
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+
+import org.xml.sax.SAXException;
 
 import it.bean.Persona;
 import it.util.XmlConverter;
@@ -22,19 +29,32 @@ public class MainServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 		Persona persona = new Persona(request.getParameter("nome"),request.getParameter("cognome"),request.getParameter("email"));
-		request.setAttribute("persona", persona);
+		//request.setAttribute("persona", persona);
+
+//		} converter.getXmlSource(persona)
+		File prova = converter.getXmlFile(persona);
 		
-//		File res = new File("WEB-INF/views/stampa.html");
-//		if(res.exists()) {
-//			PrintWriter writer = new PrintWriter(res);
-//			writer.print("");
-//			writer.close();
-//		}
-		File template = new File("/Users/marcodebiase/LeonardoAssignment/formToPdf/src/main/resources/template.xsl");
+		ByteArrayOutputStream htmlOut = null;
+		try {
+			htmlOut = converter.creaHtml3(converter.getXmlSource(persona));
+		} catch (SAXException | ParserConfigurationException | TransformerFactoryConfigurationError | TransformerException e) {
+			
+			e.printStackTrace();
+		}
+		response.setContentType("text/html");
+//		response.addHeader("Content-Disposition", "inline; filename=/persona.pdf/");
+		response.setContentLength(htmlOut.size());
+//		byte[] fileContent = Files.readAllBytes(htmlFile.toPath());
+//		response.setContentLength(fileContent.length);
+		OutputStream responseOutputStream = response.getOutputStream();
 		
-		File htmlFile = converter.creaHtml(converter.getXmlSource(persona),template);
-		
-		request.getRequestDispatcher("/WEB-INF/views/result.jsp").forward(request, response);
+//		 htmlOut.writeTo(responseOutputStream);
+//		 responseOutputStream.flush();
+		 
+		 responseOutputStream.write(htmlOut.toByteArray());
+		 responseOutputStream.flush();
+		 responseOutputStream.close();
+		//request.getRequestDispatcher("/WEB-INF/views/stampa.html").forward(request, response);
 		//response.sendRedirect("/WEB-INF/views/stampa.html");
 	}
 	
@@ -43,25 +63,24 @@ public class MainServlet extends HttpServlet {
 		
 	//	converter.creaPdf(converter.getXmlSource(persona));
 		File xmlFile = new File("/Users/marcodebiase/LeonardoAssignment/formToPdf/src/main/resources/person.xml");
-		File pdfFile = converter.creaPdf(xmlFile);//new File("/Users/marcodebiase/LeonardoAssignment/formToPdf/Doc/persona.pdf");
-		response.setContentType("application/pdf");
-		if(request.getParameter("pdf").equals("visualizza")) {
-			response.addHeader("Content-Disposition", "inline; filename=/persona.pdf/");
-		}
-		else {
-			response.addHeader("Content-Disposition", "attachment; filename=/persona.pdf/");
-		}
+		//File pdfFile = converter.creaPdf(xmlFile);//new File("/Users/marcodebiase/LeonardoAssignment/formToPdf/Doc/persona.pdf");
+		ByteArrayOutputStream out = converter.generaPdfFromFile(xmlFile);
 		
-		response.setContentLength((int)pdfFile.length());
+//		if(request.getParameter("pdf").equals("visualizza")) {
+//			response.addHeader("Content-Disposition", "inline; filename=/persona.pdf/");
+//		}
+//		else {
+//			response.addHeader("Content-Disposition", "attachment; filename=/persona.pdf/");
+//		}
+		//response.addHeader("Content-Disposition", "inline; filename=/persona.pdf/");
+		
+		
+		response.setContentType("application/pdf");
+		response.setContentLength(out.size());
 		OutputStream responseOutputStream = response.getOutputStream();
-		byte[] fileContent = Files.readAllBytes(pdfFile.toPath());
-		 //byte[] content = new byte[size];
-//		 int bytesRead;
-//		 while ((bytesRead = fileInputStream.read(content)) != -1) // read, then assign, then compare
-//		 {
-//		     responseOutputStream.write(content, 0, bytesRead);
-//		 }
-		 responseOutputStream.write(fileContent);
+		
+
+		 responseOutputStream.write(out.toByteArray());
 		 responseOutputStream.flush();
 		 responseOutputStream.close();
 		

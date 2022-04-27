@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-		<table class="table">
+		<table>
 		<jsp:useBean id="persona" scope="request" class="it.bean.Persona"/>
 		<tr>
 			<th>Nome </th>
@@ -27,9 +27,9 @@
 	<input type="hidden" name="pdf" value="visualizza"/>
 <input value="Visualizza PDF" type="submit">
 </form>
-	<form method="get" action="visualizza">
+<!-- 	<form method="get" action="visualizza">
 	<input type="hidden" name="pdf" value="genera"/>
 <input value="Scarica PDF" type="submit">
-</form>
+</form> -->
 </body>
 </html>

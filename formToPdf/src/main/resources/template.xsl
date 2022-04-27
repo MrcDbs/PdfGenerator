@@ -8,10 +8,11 @@
 	  <body>
 	  
 	  <table border="1">
-	    <tr bgcolor="#9acd32">
+	    <tr bgcolor="#c9739b">
 	      <th>Nome</th>
 	      <th>Cognome</th>
 	      <th>Email</th>
+	      
 	    </tr>
 	    
 	    <tr>
