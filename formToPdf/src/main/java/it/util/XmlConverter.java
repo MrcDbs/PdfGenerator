@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.net.URL;
+import java.nio.file.Files;
 
 import javax.xml.bind.JAXBContext; 
 import javax.xml.bind.JAXBException;
@@ -44,10 +45,10 @@ public class XmlConverter {
 //	public static void main(String[]args) throws IOException {
 //	XmlConverter c = new XmlConverter();
 //	Persona p = new Persona("pippo","verdi","rss@l.it");
-//	File template = new File("/Users/marcodebiase/LeonardoAssignment/formToPdf/src/main/resources/template.xsl");
+//	File template = new File("/Users/marcodebiase/LeonardoAssignment/formToPdf/src/main/resources/prova.xml");
 //	
 //	try {
-//		c.creaHtml3(c.getXmlSource(p));
+//		c.creaForm(c.generaByteArray(template));
 //	} catch (SAXException e) {
 //		// TODO Auto-generated catch block
 //		e.printStackTrace();
@@ -82,7 +83,7 @@ public class XmlConverter {
 //			FileWriter file = new FileWriter("src/main/resources/person.xml");
 			
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			 m.marshal(person, out);
+			m.marshal(person, out);
 			
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -312,6 +313,39 @@ public class XmlConverter {
 		//System.out.println(out.toByteArray().length);
 		return out;
 	
+	}
+	
+	public ByteArrayOutputStream  creaForm(ByteArrayOutputStream xmlSource) throws SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+		
+		ClassLoader classloader = XmlConverter.class.getClassLoader();
+
+		InputStream xmlData =new ByteArrayInputStream(xmlSource.toByteArray());
+	
+		URL xsltURL = classloader.getResource("formTemplate.xslt");
+		
+		Document xmlDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(xmlData);
+		Source stylesource = new StreamSource(xsltURL.openStream(), xsltURL.toExternalForm());
+		Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
+	
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		Result res = new StreamResult(out) ;
+		transformer.transform(new DOMSource(xmlDocument),res );
+		//System.out.println("ByteArray è "+(out==null));
+		return out;
 	
 	}
+	
+	public ByteArrayOutputStream generaByteArray(File xmlFile) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			byte[] bytes = Files.readAllBytes(xmlFile.toPath());
+			out.write(bytes);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return out;
+	}
+	
 }

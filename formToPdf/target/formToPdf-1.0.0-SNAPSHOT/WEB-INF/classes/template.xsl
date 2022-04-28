@@ -23,6 +23,7 @@
 	    
 	  </table>
 	  <form action="visualizza" method="get">
+	  <input type = "hidden" name = "start" value="false" />
 	  <input type="submit" value="Genera PDF"/>
 	  </form>
 	  </body>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <persona>
-    <cognome>Ciao</cognome>
-    <email>A</email>
-    <nome>Tutti</nome>
+	<nome>Nome</nome>
+    <cognome>Cognome</cognome>
+    <email>Email</email> 
 </persona>
